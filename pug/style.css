@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  color: #DDD;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+  font-family: Helvetica;
+}
+
+div {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  vertical-align: middle;
+  padding-top: 45vh;
+}
+
+#artist {
+  font-size: 10vw;
+}
+
+#singer, #title {
+  width: 100%;
+  position: absolute;
+  display: block;
+}
+
+#singer {
+  bottom: -1vh;
+  font-size: 7vw;
+}
+
+#title {
+  top: 6vh;
+  font-size: 6vw;
+}

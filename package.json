@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "tsc get_info.ts; node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "child_process": "^1.0.2",
-    "itunes-info": "^0.5.0",
-    "ts-node": "^3.3.0",
-    "tsc": "^1.20150623.0"
+    "express": "^4.16.3",
+    "pug": "^2.0.3"
   }
 }

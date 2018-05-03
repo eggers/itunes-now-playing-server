@@ -1,24 +1,34 @@
-"use strict";
-exports.__esModule = true;
-var child_process_1 = require("child_process");
-var get_artist = child_process_1.spawn("osascript", [
-    '-e', "tell application \"iTunes\"",
-    '-e', "(get artist of current track)",
-    //'-e', `(get name of current track) & "\n" & (get artist of current track)`,
-    '-e', "end tell",
-]);
-var get_track = child_process_1.spawn("osascript", [
-    '-e', "tell application \"iTunes\"",
-    '-e', "(get lyrics of current track)",
-    //'-e', `(get name of current track) & "\n" & (get artist of current track)`,
-    '-e', "end tell",
-]);
-get_track.stdout.on('data', function (data) {
-    console.log("stdout: " + data);
-});
-get_track.stderr.on('data', function (data) {
-    console.log("stderr: " + data);
-});
-get_track.on('close', function (code) {
-    console.log("child process exited with code " + code);
-});
+/*
+ * Module dependencies
+ */
+var express = require('express');
+var get_info = require('./get_info');
+  
+var app = express();
+
+app.set('views', __dirname + '/pug');
+app.set('view engine', 'pug')
+
+app.get('/', function (req, res) {
+  function callback(data) {
+      res.render('index', {
+        title: data.title,
+        artist: data.artist,
+        singer: data.singer,
+      });
+  }
+  get_info.get_track_info(callback);
+})
+
+app.get('/get_track_info', function (req, res) {
+  function callback(data) {
+      res.json({
+        title: data.title,
+        artist: data.artist,
+        singer: data.singer,
+      });
+  }
+  get_info.get_track_info(callback);
+})
+
+app.listen(3000, () => console.log('Example app listening on port 3000!'))
